@@ -5,12 +5,12 @@
  * @version: 1.0.0
  * @Date: 2024-10-15 20:36:29
  * @LastEditors: Xinyi Liu(CairBin)
- * @LastEditTime: 2024-10-15 20:45:26
+ * @LastEditTime: 2024-10-15 21:29:42
  * @Copyright: Copyright (c) 2024 Xinyi Liu(CairBin)
  */
 // 此部分参考了 https://github.com/powerfooI/rftp/blob/master/src/lib/session.rs
 
-use std::sync::Mutex;
+use std::sync::{Arc, Mutex};
 use tokio::net::TcpStream;
 
 /// 传输模式
@@ -39,7 +39,7 @@ pub trait ITransfer{
 
 impl Transfer{
     pub fn new(mode: TransferMode)->Self{
-        Self { mode: mode, total_size: 0, finished_size: 0, offset: 0, filename: String::new, is_finished: false, aborted: false }
+        Self { mode: mode, total_size: 0, finished_size: 0, offset: 0, filename: String::new(), is_finished: false, aborted: false }
     }
 }
 
