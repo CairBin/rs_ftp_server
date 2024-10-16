@@ -5,7 +5,7 @@
  * @version: 1.0.0
  * @Date: 2024-10-15 11:00:22
  * @LastEditors: Xinyi Liu(CairBin)
- * @LastEditTime: 2024-10-15 12:34:37
+ * @LastEditTime: 2024-10-16 23:42:54
  * @Copyright: Copyright (c) 2024 Xinyi Liu(CairBin)
  */
 
@@ -54,15 +54,10 @@ pub enum FtpCommand{
 }
 
 
-pub trait IFtpCommandParser{
-    fn parse(msg: &str)->Result<FtpCommand, Box<dyn Error>>;
-}
-
-
 pub struct FtpCommandParser;
 
-impl IFtpCommandParser for FtpCommandParser{
-    fn parse(msg: &str)->Result<FtpCommand, Box<dyn Error>> {
+impl FtpCommandParser{
+    pub fn parse(msg: &str)->Result<FtpCommand, Box<dyn Error>> {
         let mut iter = msg.trim().split_whitespace();
         let cmd = iter.next().unwrap();
         let args =  iter.collect::<Vec<&str>>().join(" ");
