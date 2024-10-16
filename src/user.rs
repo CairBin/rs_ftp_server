@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2024-10-15 20:25:30
  * @LastEditors: Xinyi Liu(CairBin)
- * @LastEditTime: 2024-10-16 23:22:37
+ * @LastEditTime: 2024-10-16 23:27:17
  * @Copyright: Copyright (c) 2024 Xinyi Liu(CairBin)
  */
 // 此处参考了 https://github.com/powerfooI/rftp/blob/master/src/lib/user.rs
@@ -72,7 +72,7 @@ impl User{
 
 #[derive(Debug)]
 pub struct UserManager{
-    pub users: std::collections::HashMap<SocketAddr, User>
+    pub users: std::collections::HashMap<SocketAddr, Arc<Mutex<User>>>
 }
 
 impl UserManager{
