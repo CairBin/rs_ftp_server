@@ -5,14 +5,14 @@
  * @version: 
  * @Date: 2024-10-15 20:25:30
  * @LastEditors: Xinyi Liu(CairBin)
- * @LastEditTime: 2024-10-15 21:31:28
+ * @LastEditTime: 2024-10-16 21:59:13
  * @Copyright: Copyright (c) 2024 Xinyi Liu(CairBin)
  */
 // 此处参考了 https://github.com/powerfooI/rftp/blob/master/src/lib/user.rs
 
-use std::{error::Error, net::SocketAddr, sync::{Arc, Mutex}};
+use std::{collections::HashMap, error::Error, net::SocketAddr, sync::{Arc, Mutex}};
 
-use crate::{file, transfer::{ITransfer, Transfer}};
+use crate::{file, transfer::Transfer};
 
 
 /// 用户状态
@@ -65,6 +65,19 @@ impl User{
         match self.transfer.clone(){
             Some(t) => Ok(t),
             None => Err("Transfer not found".into())
+        }
+    }
+}
+
+#[derive(Debug)]
+pub struct UserManager{
+    pub users: std::collections::HashMap<SocketAddr, User>
+}
+
+impl UserManager{
+    pub fn new()->Self{
+        Self { 
+            users: HashMap::new(), 
         }
     }
 }
