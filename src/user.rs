@@ -5,12 +5,13 @@
  * @version: 
  * @Date: 2024-10-15 20:25:30
  * @LastEditors: Xinyi Liu(CairBin)
- * @LastEditTime: 2024-10-16 21:59:13
+ * @LastEditTime: 2024-10-16 23:22:37
  * @Copyright: Copyright (c) 2024 Xinyi Liu(CairBin)
  */
 // 此处参考了 https://github.com/powerfooI/rftp/blob/master/src/lib/user.rs
 
-use std::{collections::HashMap, error::Error, net::SocketAddr, sync::{Arc, Mutex}};
+use std::{collections::HashMap, error::Error, net::SocketAddr, sync::Arc};
+use tokio::sync::Mutex;
 
 use crate::{file, transfer::Transfer};
 
