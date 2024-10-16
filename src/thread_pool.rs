@@ -5,7 +5,7 @@
  * @version: 1.0.0
  * @Date: 2024-10-16 22:10:59
  * @LastEditors: Xinyi Liu(CairBin)
- * @LastEditTime: 2024-10-16 22:44:33
+ * @LastEditTime: 2024-10-16 22:53:40
  * @Copyright: Copyright (c) 2024 Xinyi Liu(CairBin)
  */
 
@@ -72,7 +72,11 @@ impl ThreadPool{
         })
     }
 
-    fn execute<F>(&self, func:F) where F:FnOnce() + 'static + Send{
+    pub fn new_default()->Result<Self, Box<dyn Error>>{
+        ThreadPool::new(num_cpus::get() * 2)
+    }
+
+    pub fn execute<F>(&self, func:F) where F:FnOnce() + 'static + Send{
         let task = Task::NewTask(Box::new(func));
         self.sender.send(task).unwrap();
     }
